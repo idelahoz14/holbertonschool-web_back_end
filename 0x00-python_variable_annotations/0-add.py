@@ -1,5 +1,6 @@
 #!usr/bin/env python3
-from typing import Callable, Iterator, Union, Optional, List
+""" Take two arguments and return their sum as a floar """
 
 def add(a: float, b: float) -> float:
+    """ Take two arguments and return their sum as a floar """
     return a + b
