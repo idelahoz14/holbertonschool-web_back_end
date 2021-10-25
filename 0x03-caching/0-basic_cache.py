@@ -18,6 +18,6 @@ class BasicCache(BaseCaching):
         """ Get an item by key
         """
         if self.cache_data.get(key) is None:
-            pass
+            return None
 
         return self.cache_data.get(key)
