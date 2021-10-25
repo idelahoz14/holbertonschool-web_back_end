@@ -20,4 +20,7 @@ class BasicCache(BaseCaching):
         if key == None:
             pass
 
+        if key is not in self.cache_data:
+            pass 
+
         return self.cache_data.get(key)
