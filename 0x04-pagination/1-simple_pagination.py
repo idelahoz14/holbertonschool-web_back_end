@@ -13,7 +13,8 @@ def index_range(page: int, page_size: int):
     in a list for those particular pagination parameters """
 
     size = page * page_size
-    return (size - page_size, size) 
+    return (size - page_size, size)
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -35,14 +36,14 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            assert(type(page) == int)
-            assert(type(page_size) == int)
-            assert page > 0
-            assert page_size > 0
+        assert(type(page) == int)
+        assert(type(page_size) == int)
+        assert page > 0
+        assert page_size > 0
 
-            pages, page_sizes = index_range(page, page_size)
-            csv = []
-            if pages >= len(self.dataset()):
-                return csv
-            csv = self.dataset()
-            return csv[pages:page_sizes]
+        pages, page_sizes = index_range(page, page_size)
+        csv = []
+        if pages >= len(self.dataset()):
+            return csv
+        csv = self.dataset()
+        return csv[pages:page_sizes]
