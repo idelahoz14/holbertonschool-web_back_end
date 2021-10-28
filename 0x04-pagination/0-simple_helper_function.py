@@ -10,4 +10,4 @@ def index_range(page: int, page_size: int):
     in a list for those particular pagination parameters """
 
     size = page * page_size
-    return (size - page_size, size) 
+    return (size - page_size, size)
