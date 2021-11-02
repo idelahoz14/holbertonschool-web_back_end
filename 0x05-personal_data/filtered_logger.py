@@ -3,6 +3,8 @@
 import re
 from typing import List
 import logging
+import mysql.connector
+from os import getenv
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
@@ -45,3 +47,14 @@ def get_logger() -> logging.Logger:
     handler.setFormatter(RedactingFormatter(PII_FIELDS))
     logger.addHandler(handler)
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """ Redacting Formatter class."""
+    db = mysql.connector.connection.MySQLConnection(
+            user=getenv('PERSONAL_DATA_DB_USERNAME', 'root'),
+            password=getenv('PERSONAL_DATA_DB_PASSWORD', ''),
+            host=getenv('PERSONAL_DATA_DB_HOST', 'localhost'),
+            database=getenv('PERSONAL_DATA_DB_NAME'))
+
+    return db
