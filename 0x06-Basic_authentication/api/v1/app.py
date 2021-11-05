@@ -40,6 +40,7 @@ def forbidden(error) -> str:
     """
     return jsonify({"error": "Forbidden"}), 403
 
+
 @app.before_request
 def before_reques() -> None:
     """ Filtering of each request
@@ -53,6 +54,7 @@ def before_reques() -> None:
         return None
     if not auth.current_user(request):
         return None
+
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
