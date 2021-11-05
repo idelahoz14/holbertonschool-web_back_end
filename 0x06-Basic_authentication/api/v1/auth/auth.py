@@ -6,10 +6,9 @@ from typing import List, TypeVar
 
 
 class Auth:
-    """
+    """ Class to manage the API authentication.
     """
 
-    @property
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """ Require authorithation check
         """
@@ -19,14 +18,12 @@ class Auth:
             path += '/'
         return False if path in excluded_paths else True
 
-    @property
     def authorization_header(self, request=None) -> str:
         """ Authorithation header check
         """
         if request:
             request.header.get('Authorithation')
 
-    @property
     def current_user(self, request=None) -> TypeVar('User'):
         """ Current user check
         """
