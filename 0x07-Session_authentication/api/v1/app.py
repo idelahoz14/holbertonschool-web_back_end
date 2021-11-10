@@ -56,8 +56,9 @@ def before_reques() -> None:
     if not auth.authorization_header(request):
         abort(401)
     if not auth.current_user(request):
-        request.current_user = abort(403)
-
+        abort(403)
+    
+    request.current_user = auth.current_user(request)
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
