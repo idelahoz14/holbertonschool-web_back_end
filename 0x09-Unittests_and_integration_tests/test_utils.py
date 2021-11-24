@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
+""" UnitTest """
 import unittest
-import requests
+from utils import access_nested_map, get_json, memoize
 from parameterized import parameterized
-from unittest.mock import patch, Mock, PropertyMock
-from client import GithubOrgClient
-from urllib.error import HTTPError
+from unittest.mock import patch, Mock
 
 
 class TestAccessNestedMap(unittest.TestCase):
