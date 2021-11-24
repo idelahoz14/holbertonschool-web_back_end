@@ -59,30 +59,30 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(expected_return, test_return)
 
 
-    @parameterized_class(
-        ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
-        TEST_PAYLOAD
-    )
-    class TestIntegrationGithubOrgClient(unittest.TestCase):
-        """ class TestIntegrationGithubOrgClient """
-        @classmethod
-        def setUpClass(cls):
-            """set up class"""
-            cls.get_patcher = patch('requests.get', side_effect=HTTPError)
+@parameterized_class(
+    ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
+    TEST_PAYLOAD
+)
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ class TestIntegrationGithubOrgClient """
+    @classmethod
+    def setUpClass(cls):
+        """set up class"""
+        cls.get_patcher = patch('requests.get', side_effect=HTTPError)
 
-        @classmethod
-        def tearDownClass(cls):
-            """tear down class"""
-            cls.get_patcher.stop()
+    @classmethod
+    def tearDownClass(cls):
+        """tear down class"""
+        cls.get_patcher.stop()
 
-        def test_public_repos_with_license(self):
-            """ public repos test """
-            test_client = GithubOrgClient("repo")
-            self.assertEqual(test_client.org, self.org_payload)
-            self.assertEqual(test_client.repos_payload, self.repos_payload)
-            self.assertEqual(test_client.public_repos(), self.expected_repos)
-            self.assertEqual(test_client.public_repos("NONEXISTENT"), [])
-            self.assertEqual(test_client.public_repos(
-                "apache-2.0"), self.apache2_repos)
-            self.get.assert_has_calls([call("https://api.github.com/orgs/repo"),
-                                    call(self.org_payload["repos_url"])])
+    def test_public_repos_with_license(self):
+        """ public repos test """
+        test_client = GithubOrgClient("repo")
+        self.assertEqual(test_client.org, self.org_payload)
+        self.assertEqual(test_client.repos_payload, self.repos_payload)
+        self.assertEqual(test_client.public_repos(), self.expected_repos)
+        self.assertEqual(test_client.public_repos("NONEXISTENT"), [])
+        self.assertEqual(test_client.public_repos(
+            "apache-2.0"), self.apache2_repos)
+        self.get.assert_has_calls([call("https://api.github.com/orgs/repo"),
+                                   call(self.org_payload["repos_url"])])
