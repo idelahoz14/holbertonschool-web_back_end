@@ -14,7 +14,6 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google"),
         ("abc"),
     ])
-    
     @patch("client.get_json", return_value={"payload": True})
     def test_org(self, org_name, mock_get):
         """test_org"""
@@ -53,7 +52,6 @@ class TestGithubOrgClient(unittest.TestCase):
         ({"license": {"key": "my_license"}}, "my_license", True),
         ({"license": {"key": "other_license"}}, "my_license", False),
     ])
-
     def test_has_license(self, repo, license_key, expected_return):
         """ test GithubOrgClient.has_license"""
         test_client = GithubOrgClient("twitter")
@@ -65,7 +63,6 @@ class TestGithubOrgClient(unittest.TestCase):
         ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
         TEST_PAYLOAD
     )
-    
     class TestIntegrationGithubOrgClient(unittest.TestCase):
         """ class TestIntegrationGithubOrgClient """
         @classmethod
