@@ -4,16 +4,16 @@ export default class Currency {
       this._name = name;
     }
 
-    set code(code) {
-      this._code = code;
+    set code(newCode) {
+      this._code = newCode;
     }
 
     get code() {
       return this._code;
     }
 
-    set name(name) {
-      this._code = code;
+    set name(newName) {
+      this._name = newName;
     }
 
     get name() {
